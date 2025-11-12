@@ -113,4 +113,4 @@ If you use this repository in your research, please cite:
 
 1. **AlphaQuant**: LLM-Driven Automated Robust Feature Engineering for Quantitative Finance. In *Proceedings of the Thirteenth International Conference on Learning Representations (ICLR 2025)*, Singapore. Available at SSRN: [https://ssrn.com/abstract=5124841](https://ssrn.com/abstract=5124841).
 
-3. **AlphaSharpe**: LLM-Driven Discovery of Robust Risk-Adjusted Metrics. Preprint, arXiv:2502.00029. Available at SSRN: [https://ssrn.com/abstract=5111141](https://ssrn.com/abstract=5111141).
+3. **AlphaSharpe**: LLM-Driven Discovery of Robust Risk-Adjusted Metrics. Preprint, [arXiv:2502.00029](https://arxiv.org/abs/2502.00029).
