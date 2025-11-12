@@ -67,7 +67,7 @@ python evorisk.py
 ```
 ===== Out-of-Sample Performance by Selection Ratio =====
 
- Selection_Ratio  Calmar_EQ_Sharpe  Calmar_EQ_Calmar  Calmar_EQ_Return  Calmar_OPT_Sharpe  Calmar_OPT_Calmar  Calmar_OPT_Return
+ Selection_Ratio  EvoRisk_EQ_Sharpe  EvoRisk_EQ_Calmar  EvoRisk_EQ_Return  EvoRisk_OPT_Sharpe  EvoRisk_OPT_Calmar  EvoRisk_OPT_Return
             0.2             0.7045             0.6926            0.0007             0.7595             0.7484            0.0007
             0.4             0.7011             0.7193            0.0007             0.7375             0.8184            0.0007
             0.5             0.6997             0.7110            0.0007             0.7293             0.7960            0.0007
