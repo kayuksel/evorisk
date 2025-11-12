@@ -6,9 +6,7 @@
 
 ## 🧮 Methodological Summary
 
-EvoRisk was autonomously discovered using **AlphaEvolve** —  a large-language-model (LLM)–driven system for machine-assisted scientific discovery. It extends the **AlphaSharpe** lineage to produce a **volatility- and drawdown-aware metric** that generalizes traditional ratios (Sharpe, Sortino, Calmar) to non-stationary, heavy-tailed regimes.
-
-EvoRisk defines a **differentiable, regime-adaptive risk metric** that integrates volatility, drawdown, and tail dynamics.
+EvoRisk was autonomously discovered using **AlphaEvolve** —  a large-language-model (LLM)–driven system for machine-assisted scientific discovery. It extends the **AlphaSharpe** lineage to produce a **volatility- and drawdown-aware metric** that generalizes traditional ratios (Sharpe, Sortino, Calmar) to non-stationary, heavy-tailed regimes. EvoRisk defines a **regime-adaptive risk metric** that integrates volatility, drawdown, and tail dynamics.
 
 **Core components:**
 - Adaptive multi-horizon volatility estimation (winsorized, dynamically blended)
