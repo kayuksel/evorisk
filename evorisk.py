@@ -21,7 +21,7 @@ def alpha_sharpe(
     volatility = fv * log_returns[:, -log_returns.shape[-1] // window:].std(dim=-1, unbiased=False).sqrt()
     return mean_log_excess_return.exp() / ((std_log_returns.pow(2) + eps).sqrt() + downside + volatility)
 
-def robust_calmar(log_returns: torch.Tensor, risk_free_rate: float = 0.0) -> torch.Tensor:
+def evorisk_metric(log_returns: torch.Tensor, risk_free_rate: float = 0.0) -> torch.Tensor:
     device, dtype = log_returns.device, log_returns.dtype
     N, T = log_returns.shape
     lr = log_returns - risk_free_rate
@@ -522,13 +522,13 @@ def robust_calmar(log_returns: torch.Tensor, risk_free_rate: float = 0.0) -> tor
 
     return score
 
-def optimize_portfolio(log_returns: torch.Tensor, alpha_calmar_scores: torch.Tensor):
+def optimize_portfolio(log_returns: torch.Tensor, evorisk_scores: torch.Tensor):
     """Risk-adjusted alpha projection via inverse covariance."""
     device, dtype = log_returns.device, log_returns.dtype
     N, T = log_returns.shape
     cov_matrix = torch.cov(log_returns) + 1e-6 * torch.eye(N, device=device, dtype=dtype)
     inv_cov_matrix = torch.linalg.pinv(cov_matrix)
-    signal = torch.tanh(alpha_calmar_scores / (alpha_calmar_scores.std() + 1e-8)) * 0.05
+    signal = torch.tanh(evorisk_scores / (evorisk_scores.std() + 1e-8)) * 0.05
     risk_adjusted = inv_cov_matrix @ signal
     risk_adjusted = torch.clamp(risk_adjusted, min=0.0)
     weights = risk_adjusted / risk_adjusted.sum()
@@ -556,7 +556,7 @@ test  = torch.tensor(test_np,  dtype=torch.float32, device=device)
 # ================================================================
 # 3. Compute Selector Scores
 # ================================================================
-scores_calmar = robust_calmar(train, risk_free_rate=0.0)
+scores_calmar = evorisk_metric(train, risk_free_rate=0.0)
 scores_alpha  = alpha_sharpe(train, risk_free= 0.0, eps= 1.5e-5, dr= 2.0, fv= 1.33, window= 3)
 rank_calmar   = torch.argsort(scores_calmar, descending=True)
 rank_alpha    = torch.argsort(scores_alpha,  descending=True)
@@ -619,12 +619,12 @@ rows = []
 for i, ratio in enumerate(selection_ratios):
     rows.append({
         'Selection_Ratio': ratio,
-        'Calmar_EQ_Sharpe':  res_calmar_eq[i,0],
-        'Calmar_EQ_Calmar':  res_calmar_eq[i,1],
-        'Calmar_EQ_Return':    res_calmar_eq[i,2],
-        'Calmar_OPT_Sharpe': res_calmar_opt[i,0],
-        'Calmar_OPT_Calmar': res_calmar_opt[i,1],
-        'Calmar_OPT_Return':   res_calmar_opt[i,2],
+        'EvoRisk_EQ_Sharpe':  res_calmar_eq[i,0],
+        'EvoRisk_EQ_Calmar':  res_calmar_eq[i,1],
+        'EvoRisk_EQ_Return':    res_calmar_eq[i,2],
+        'EvoRisk_OPT_Sharpe': res_calmar_opt[i,0],
+        'EvoRisk_OPT_Calmar': res_calmar_opt[i,1],
+        'EvoRisk_OPT_Return':   res_calmar_opt[i,2],
     })
 
 df_results = pd.DataFrame(rows)
@@ -641,8 +641,8 @@ print(df_results.to_string(index=False))
 fig, axes = plt.subplots(3, 1, figsize=(12, 16), sharex=True)
 
 labels = [
-    ('robust_calmar (equal)', res_calmar_eq),
-    ('robust_calmar (opt)',   res_calmar_opt),
+    ('EvoRisk (equal)', res_calmar_eq),
+    ('EvoRisk (opt)',   res_calmar_opt),
     #('alpha_sharpe (equal)',  res_alpha_eq),
     #('alpha_sharpe (opt)',    res_alpha_opt)
 ]
