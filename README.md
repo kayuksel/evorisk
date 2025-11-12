@@ -21,3 +21,102 @@
 
 - **Visualization**
   - Comparative Sharpe, Calmar, and mean-return curves across selection ratios.
+
+---
+
+## 💻 Usage
+
+1. Place a dataset file named **`Dataset.pkl`** in the project root.  
+   It should contain a NumPy array of shape `(assets, timesteps)`  
+   with **daily log returns** for each asset.
+
+2. Run the main script:
+```bash
+python evo_risk.py
+```
+
+3. The script will:
+   - Load and split your dataset into train/test sets (80/20).  
+   - Compute EvoRisk (`robust_calmar`) and AlphaSharpe-like (`alpha_sharpe`) scores.  
+   - Rank assets and evaluate out-of-sample portfolio performance.  
+   - Print results to the console and generate comparative performance plots.
+
+---
+
+## 📊 Example Output
+
+```
+===== Out-of-Sample Performance by Selection Ratio =====
+
+ Selection_Ratio  Calmar_EQ_Sharpe  Calmar_EQ_Calmar  Calmar_EQ_Return  Calmar_OPT_Sharpe  Calmar_OPT_Calmar  Calmar_OPT_Return
+            0.2             0.7045             0.6926            0.0007             0.7595             0.7484            0.0007
+            0.4             0.7011             0.7193            0.0007             0.7375             0.8184            0.0007
+            0.5             0.6997             0.7110            0.0007             0.7293             0.7960            0.0007
+            1.0             0.5646             0.4417            0.0005             0.6555             0.5573            0.0005
+```
+
+📈 The script also produces visualizations:
+
+- **Sharpe vs Selection Ratio**  
+- **Calmar vs Selection Ratio**  
+- **Mean Log Return vs Selection Ratio**
+
+Each chart compares:
+- `robust_calmar (equal)` vs `robust_calmar (optimized)` allocations.
+
+---
+
+## 🧮 Methodological Summary
+
+EvoRisk defines a **differentiable, regime-adaptive risk metric** that integrates volatility, drawdown, and tail dynamics:
+
+\[
+\text{EvoRisk}_i =
+\frac{\tilde{\mu}_i}{
+f(\sigma_i^{\text{blend}}, \mathrm{ES}_i, H_i, \mathcal{L}_{\mathrm{DD},i}, \xi_i, \mathrm{JumpFrac}_i)
+}
+\]
+
+**Core components:**
+- Adaptive multi-horizon volatility estimation (winsorized, dynamically blended)
+- Jump variance and volatility persistence (GARCH-like)
+- Bayesian regime regularization to prevent overreaction
+- Tail-entropy penalization for heavy-tailed losses
+- Depth-weighted drawdown persistence modeling
+
+When used for both **asset selection** and **portfolio optimization**, EvoRisk achieves:
+- **+25–27 % higher Sharpe**
+- **+55–64 % higher Calmar**
+- **+40–60 % higher mean return**
+over equal-weighted portfolios.
+
+---
+
+## 🧠 Research Context
+
+EvoRisk was autonomously discovered using **AlphaEvolve** —  
+a large-language-model (LLM)–driven system for machine-assisted scientific discovery.
+
+It extends the **AlphaSharpe** lineage to produce a **volatility- and drawdown-aware metric** that generalizes traditional ratios (Sharpe, Sortino, Calmar) to non-stationary, heavy-tailed regimes.
+
+---
+
+## 📘 Citation
+
+If you use this repository in your research, please cite:
+
+```bibtex
+@article{Yuksel2025EvoRisk,
+  title   = {EvoRisk: Autonomously Discovered Regime-Adaptive Resilience-Aware Financial Metric},
+  author  = {Kamer Ali Yuksel and Hassan Sawaf},
+  year    = {2025},
+  journal = {aiXplain Research Preprint},
+  note    = {arXiv submission forthcoming}
+}
+```
+
+---
+
+## 👨‍💻 Authors
+
+**Kamer Ali Yuksel** — Head of Agentic AI, aiXplain Inc.  
