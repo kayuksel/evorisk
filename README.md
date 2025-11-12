@@ -83,6 +83,8 @@ python evo_risk.py
 Each chart compares:
 - `robust_calmar (equal)` vs `robust_calmar (optimized)` allocations.
 
+![EvoRisk Overview](evorisk.png)
+
 ---
 
 ## 📘 Citation
