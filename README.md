@@ -51,7 +51,7 @@ over equal-weighted portfolios.
 
 2. Run the main script:
 ```bash
-python evo_risk.py
+python evorisk.py
 ```
 
 3. The script will:
