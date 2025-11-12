@@ -640,8 +640,8 @@ fig, axes = plt.subplots(3, 1, figsize=(12, 16), sharex=True)
 labels = [
     ('EvoRisk (equal)', res_calmar_eq),
     ('EvoRisk (opt)',   res_calmar_opt),
-    #('alpha_sharpe (equal)',  res_alpha_eq),
-    #('alpha_sharpe (opt)',    res_alpha_opt)
+    #('αSharpe (equal)',  res_alpha_eq),
+    #('αSharpe (opt)',    res_alpha_opt)
 ]
 
 # --- Sharpe ---
