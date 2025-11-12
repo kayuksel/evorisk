@@ -16,8 +16,8 @@ EvoRisk defines a **differentiable, regime-adaptive risk metric** that integrate
 - Depth-weighted drawdown persistence modeling
 
 When used for both **asset selection** and **portfolio optimization**, EvoRisk achieves:
-- **+25–27 % higher Sharpe**
-- **+55–64 % higher Calmar**
+- **+32–36 % higher Sharpe**
+- **+80–60 % higher Calmar**
 - **+40–60 % higher mean return**
 over equal-weighted portfolios.
 
