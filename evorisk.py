@@ -479,10 +479,7 @@ def evorisk_metric(log_returns: torch.Tensor, risk_free_rate: float = 0.0) -> to
     w_tail = torch.exp(-0.2 * alpha_t)
     score *= (1 + 0.3 * w_tail)
 
-    if T >= 5:
-        lead = lr[:, -1] - lr[:, -5]
-    else:
-        lead = torch.zeros(N, device=device, dtype=dtype)
+    lead = lr[:, -1] - lr[:, -5]
     lead_std = lr[:, -5:].std(1) + 1e-8
     lead_score = lead / lead_std
     score = score * (1 + 0.1 * torch.tanh(lead_score))
