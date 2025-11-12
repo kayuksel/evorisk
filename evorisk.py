@@ -466,12 +466,9 @@ def robust_calmar(log_returns: torch.Tensor, risk_free_rate: float = 0.0) -> tor
     score = score / (cs_rank + 1).float()
 
     skew_window = min(10, T)
-    if T > 1:
-        cur_skew = ((lr[:, -skew_window:] - lr[:, -skew_window:].mean(1, keepdim=True)).pow(3).mean(1) / (lr[:, -skew_window:].std(1, unbiased=False)**3 + 1e-8))
-        prev_skew = ((lr[:, -(skew_window+1):-1] - lr[:, -(skew_window+1):-1].mean(1, keepdim=True)).pow(3).mean(1) / (lr[:, -(skew_window+1):-1].std(1, unbiased=False)**3 + 1e-8))
-        skew_change = cur_skew - prev_skew
-    else:
-        skew_change = torch.zeros(N, device=device, dtype=dtype)
+    cur_skew = ((lr[:, -skew_window:] - lr[:, -skew_window:].mean(1, keepdim=True)).pow(3).mean(1) / (lr[:, -skew_window:].std(1, unbiased=False)**3 + 1e-8))
+    prev_skew = ((lr[:, -(skew_window+1):-1] - lr[:, -(skew_window+1):-1].mean(1, keepdim=True)).pow(3).mean(1) / (lr[:, -(skew_window+1):-1].std(1, unbiased=False)**3 + 1e-8))
+    skew_change = cur_skew - prev_skew
     skew_change_neg = -skew_change
     skew_change_neg_clipped = torch.clamp(skew_change_neg, 0, 1)
     lam = lam * (1 + 0.15 * skew_change_neg_clipped)
