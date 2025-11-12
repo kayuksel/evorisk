@@ -1,9 +1,7 @@
 # 🧠 EvoRisk: Autonomously Discovered Regime-Adaptive Resilience-Aware Financial Metric
 
 **EvoRisk** is an autonomously discovered, regime-adaptive, and resilience-aware performance metric that generalizes classical ratios such as **Sharpe** and **Calmar**.  
-
 It models **volatility asymmetry**, **tail risk**, and **drawdown persistence** under non-stationary market regimes — providing a robust signal for **asset selection** and **portfolio optimization**.
-
 Developed within an **AlphaEvolve-style AlphaSharpe framework**, EvoRisk was evolved autonomously through iterative generation, mutation, scoring, and selection — merging large language model (LLM) creativity with empirical validation.
 
 ---
