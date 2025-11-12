@@ -4,6 +4,25 @@
 
 ---
 
+## 🧮 Methodological Summary
+
+EvoRisk defines a **differentiable, regime-adaptive risk metric** that integrates volatility, drawdown, and tail dynamics.
+
+**Core components:**
+- Adaptive multi-horizon volatility estimation (winsorized, dynamically blended)
+- Jump variance and volatility persistence (GARCH-like)
+- Bayesian regime regularization to prevent overreaction
+- Tail-entropy penalization for heavy-tailed losses
+- Depth-weighted drawdown persistence modeling
+
+When used for both **asset selection** and **portfolio optimization**, EvoRisk achieves:
+- **+25–27 % higher Sharpe**
+- **+55–64 % higher Calmar**
+- **+40–60 % higher mean return**
+over equal-weighted portfolios.
+
+---
+
 ## 🚀 Features
 
 - **Robust Financial Metrics**
@@ -66,38 +85,9 @@ Each chart compares:
 
 ---
 
-## 🧮 Methodological Summary
-
-EvoRisk defines a **differentiable, regime-adaptive risk metric** that integrates volatility, drawdown, and tail dynamics:
-
-\[
-\text{EvoRisk}_i =
-\frac{\tilde{\mu}_i}{
-f(\sigma_i^{\text{blend}}, \mathrm{ES}_i, H_i, \mathcal{L}_{\mathrm{DD},i}, \xi_i, \mathrm{JumpFrac}_i)
-}
-\]
-
-**Core components:**
-- Adaptive multi-horizon volatility estimation (winsorized, dynamically blended)
-- Jump variance and volatility persistence (GARCH-like)
-- Bayesian regime regularization to prevent overreaction
-- Tail-entropy penalization for heavy-tailed losses
-- Depth-weighted drawdown persistence modeling
-
-When used for both **asset selection** and **portfolio optimization**, EvoRisk achieves:
-- **+25–27 % higher Sharpe**
-- **+55–64 % higher Calmar**
-- **+40–60 % higher mean return**
-over equal-weighted portfolios.
-
----
-
 ## 🧠 Research Context
 
-EvoRisk was autonomously discovered using **AlphaEvolve** —  
-a large-language-model (LLM)–driven system for machine-assisted scientific discovery.
-
-It extends the **AlphaSharpe** lineage to produce a **volatility- and drawdown-aware metric** that generalizes traditional ratios (Sharpe, Sortino, Calmar) to non-stationary, heavy-tailed regimes.
+EvoRisk was autonomously discovered using **AlphaEvolve** —  a large-language-model (LLM)–driven system for machine-assisted scientific discovery. It extends the **AlphaSharpe** lineage to produce a **volatility- and drawdown-aware metric** that generalizes traditional ratios (Sharpe, Sortino, Calmar) to non-stationary, heavy-tailed regimes.
 
 ---
 
