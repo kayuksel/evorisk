@@ -92,20 +92,12 @@ Each chart compares:
 If you use this repository in your research, please cite:
 
 ```bibtex
-@article{Yuksel2025EvoRisk,
+@article{EvoRisk,
   title   = {EvoRisk: Autonomously Discovered Regime-Adaptive Resilience-Aware Financial Metric},
-  author  = {Kamer Ali Yuksel and Hassan Sawaf},
   year    = {2025},
-  journal = {aiXplain Research Preprint},
   note    = {arXiv submission forthcoming}
 }
 ```
-
----
-
-## 👨‍💻 Authors
-
-**Kamer Ali Yuksel** — Head of Agentic AI, aiXplain Inc.  
 
 ---
 
